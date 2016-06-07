@@ -1,6 +1,5 @@
 class Solution {
     
-    bool *rows;
     bool *cols;
     bool *add;
     bool *diff;
@@ -8,7 +7,7 @@ class Solution {
     
     bool valid(int i, int j)
     {
-        if(!rows[i] && !cols[j] && !add[i+j] && !diff[i-j+n])
+        if(!cols[j] && !add[i+j] && !diff[i-j+n])
             return true;
         return false;
     }
@@ -25,9 +24,9 @@ class Solution {
         {
             if(valid(i, j))
             {
-                rows[i] = cols[j] = add[i+j] = diff[i-j+n] = true;
+                cols[j] = add[i+j] = diff[i-j+n] = true;
                 help(i+1, res);
-                rows[i] = cols[j] = add[i+j] = diff[i-j+n] = false;
+                cols[j] = add[i+j] = diff[i-j+n] = false;
             }
         }
     }
@@ -35,7 +34,6 @@ class Solution {
 public:
     int totalNQueens(int n) {
         
-        rows = new bool[n];
         cols = new bool[n];
         add = new bool[2*n];
         diff = new bool[2*n];
@@ -45,4 +43,5 @@ public:
         help(0, res);
         return res;
     }
+    
 };
